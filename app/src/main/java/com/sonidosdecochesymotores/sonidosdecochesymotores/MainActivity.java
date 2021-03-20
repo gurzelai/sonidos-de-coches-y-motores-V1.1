@@ -39,7 +39,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity { 
+public class MainActivity extends AppCompatActivity {
 
     final int NUMERO_DE_COCHES_PARA_EL_ANUNCIO = 5;
     ListView lvCoches;
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         if (bloqueo) intent.putExtra("bloqueo", true);
         if ((contadorDeAnunciosVistos == NUMERO_DE_COCHES_PARA_EL_ANUNCIO)) {
             contadorDeAnunciosVistos = 0;
-            mostrarAnuncio();
+            if(minterstitialAd!=null) mostrarAnuncio();
         }
         contadorDeAnunciosVistos++;
         startActivity(intent);
