@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">أصوات السيارات والمحركات</string>
+    <string name="app_name_mayus">أصوات السيارات والمحرك</string>
+    <string name="avisoLongClick">الضغط لفترة طويلة لقفل الوضع الأفقي</string>
+</resources>
