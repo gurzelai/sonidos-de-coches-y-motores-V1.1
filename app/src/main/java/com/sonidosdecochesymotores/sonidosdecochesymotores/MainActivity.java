@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
         Coche c = null;
         List<String> nombresEnOtroIdioma = null;
         int contador = 0;
-        if (Locale.getDefault().getLanguage().equals("zh") || Locale.getDefault().getLanguage().equals("hi")) {
+        if (Locale.getDefault().getLanguage().equals("zh") || Locale.getDefault().getLanguage().equals("hi") || Locale.getDefault().getLanguage().equals("ar")) {
             InputStream isOtroIdioma = null;
             try {
                 isOtroIdioma = am.open("nombres" + Locale.getDefault().getLanguage() + ".txt");
