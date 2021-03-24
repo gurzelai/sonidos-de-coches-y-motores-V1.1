@@ -41,14 +41,13 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    final int NUMERO_DE_COCHES_PARA_EL_ANUNCIO = 5;
+    //final String IDBANNER = "ca-app-pub-3940256099942544/6300978111";  //prueba
+    // String IDBANNER = "ca-app-pub-3237439786100647/3882298242";  //real
+
     ListView lvCoches;
     List<Coche> listaCoches;
     TextView nombreDeLaApp;
-    int contadorDeAnunciosVistos = 0;
-    private InterstitialAd minterstitialAd;
     Intent intent;
-    AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
         });
         nombreDeLaApp = findViewById(R.id.nombreDeLaApp);
         String appName = nombreDeLaApp.getText().toString();
-        mAdView = findViewById(R.id.adView);
         Spannable wordtoSpan = new SpannableString(appName);
         wordtoSpan.setSpan(new ForegroundColorSpan(Color.parseColor("#81C4FF")), 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         wordtoSpan.setSpan(new ForegroundColorSpan(Color.parseColor("#16588E")), 1, 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -86,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         nombreDeLaApp.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                Toast.makeText(getApplicationContext(), "¡Gracias a Peio Mena por ayudarme a crear mi primera app!¡Eskerrikasko!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "¡Gracias a Peio Mena por ayudarme a crear mi primera app!", Toast.LENGTH_SHORT).show();
                 return true;
             }
         });
@@ -97,11 +95,6 @@ public class MainActivity extends AppCompatActivity {
         Coche coche = listaCoches.get(position);
         intent.putExtra("coche", coche);
         if (bloqueo) intent.putExtra("bloqueo", true);
-        if ((contadorDeAnunciosVistos == NUMERO_DE_COCHES_PARA_EL_ANUNCIO)) {
-            contadorDeAnunciosVistos = 0;
-            if(minterstitialAd!=null) mostrarAnuncio();
-        }
-        contadorDeAnunciosVistos++;
         startActivity(intent);
     }
 
@@ -113,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         AdRequest adRequest = new AdRequest.Builder().build();
+        AdView mAdView = findViewById(R.id.adViewMain);
         mAdView.loadAd(adRequest);
         mAdView.setAdListener(new AdListener() {
             @Override
@@ -174,31 +168,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         anadirBanner();
-        anuncio();
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
         pantallaCompleta();
-    }
-
-    private void anuncio() {
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-                AdRequest adRequest = new AdRequest.Builder().build();
-                InterstitialAd.load(MainActivity.this, "ca-app-pub-3237439786100647/2312730540", adRequest, new InterstitialAdLoadCallback() {
-                    @Override
-                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
-                        minterstitialAd = interstitialAd;
-                    }
-                });
-            }
-        });
-    }
-
-    public void mostrarAnuncio() {
-        minterstitialAd.show(MainActivity.this);
     }
 }

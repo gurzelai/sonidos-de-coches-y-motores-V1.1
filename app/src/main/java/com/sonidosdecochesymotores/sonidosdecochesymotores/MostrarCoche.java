@@ -21,6 +21,9 @@ import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 public class MostrarCoche extends AppCompatActivity {
 
+    //final String IDBANNER = "ca-app-pub-3237439786100647/6097908799"; //real
+    //final String IDBANNER = "ca-app-pub-3940256099942544/6300978111"; //prueba
+
     Coche coche;
     ImageView imagen;
     MediaPlayer mp;
