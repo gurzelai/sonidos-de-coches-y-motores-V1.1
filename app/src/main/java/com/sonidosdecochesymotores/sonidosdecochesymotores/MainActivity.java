@@ -1,6 +1,5 @@
 package com.sonidosdecochesymotores.sonidosdecochesymotores;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -20,14 +19,10 @@ import android.widget.Toast;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdValue;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.OnPaidEventListener;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
-import com.google.android.gms.ads.interstitial.InterstitialAd;
-import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 import java.io.BufferedReader;
@@ -98,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void anadirBanner() {
+    public void anadirBanner() {
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
@@ -154,6 +149,8 @@ public class MainActivity extends AppCompatActivity {
                 if (nombresEnOtroIdioma != null) {
                     c.setNombreEnOtroIdioma(nombresEnOtroIdioma.get(contador++));
                 }
+                FirebaseCrashlytics.getInstance().setCustomKey("Idioma", Locale.getDefault().getLanguage());
+                FirebaseCrashlytics.getInstance().setCustomKey("Cantidad de coches en lista", listaCoches.size());
                 String nombre = c.getNombre().toLowerCase().replaceAll(" ", "")
                         .toLowerCase().replace("-", "").replace("_", "").replace("(", "").replace(")", "");
                 c.setImagen(getResources().getIdentifier(nombre.concat("imagen"), "raw", this.getPackageName()));
