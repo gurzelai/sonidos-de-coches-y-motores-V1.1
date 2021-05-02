@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -151,6 +152,13 @@ public class MainActivity extends AppCompatActivity {
                 }
                 FirebaseCrashlytics.getInstance().setCustomKey("Idioma", Locale.getDefault().getLanguage());
                 FirebaseCrashlytics.getInstance().setCustomKey("Cantidad de coches en lista", listaCoches.size());
+                if(c == null){
+                    FirebaseCrashlytics.getInstance().setCustomKey("Coche es null", true);
+                }
+                else if(listaCoches.size()==75){
+                    FirebaseCrashlytics.getInstance().setCustomKey("Nombre del coche n.75", c.getNombre());
+                    FirebaseCrashlytics.getInstance().setCustomKey("Nombre del coche n.75", c.getNombreEnOtroIdioma());
+                }
                 String nombre = c.getNombre().toLowerCase().replaceAll(" ", "")
                         .toLowerCase().replace("-", "").replace("_", "").replace("(", "").replace(")", "");
                 c.setImagen(getResources().getIdentifier(nombre.concat("imagen"), "raw", this.getPackageName()));
