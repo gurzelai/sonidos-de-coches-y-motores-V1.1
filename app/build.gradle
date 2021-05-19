@@ -12,7 +12,7 @@ android {
         applicationId "com.sonidosdecochesymotores.sonidosdecochesymotores"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 8
+        versionCode 9
         versionName "1.6 Bug corrections"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
